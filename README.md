@@ -2,6 +2,8 @@
 🛠️ AWS SERVICES USED:
 - AWS S3
 - AWS CloudFront
+- AWS Lambda - Python
+- AWS Dynamo DB
 
 
 ✅ Troubleshooting:
@@ -41,3 +43,9 @@ All issues were successfully resolved, and the resume site is now:
 - Efficiently cached and updatable with invalidation when needed
 
 This debugging journey helped reinforce core AWS concepts such as IAM policies, S3 static hosting, CloudFront OAC, and cache control.
+
+3. ❌ “500 Internal Server Error – Lambda Function URL Returning Invalid Response”
+
+Issue: Internal Server Error with AWS Lambda Function URL
+While integrating AWS Lambda with DynamoDB for the Cloud Resume Challenge, I encountered an HTTP 500 Internal Server Error when accessing the Lambda Function URL.
+Instead of returning the views count, the browser showed “500 Internal Server Error”.
