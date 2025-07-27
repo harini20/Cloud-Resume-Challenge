@@ -49,3 +49,13 @@ This debugging journey helped reinforce core AWS concepts such as IAM policies, 
 Issue: Internal Server Error with AWS Lambda Function URL
 While integrating AWS Lambda with DynamoDB for the Cloud Resume Challenge, I encountered an HTTP 500 Internal Server Error when accessing the Lambda Function URL.
 Instead of returning the views count, the browser showed “500 Internal Server Error”.
+
+The error I received after printing the error code to debug:
+
+{"error": "An error occurred (AccessDeniedException) when calling the GetItem operation: User: arn:aws:sts::433607260416:assumed-role/cloud-resume-test-api-role-f6ugnhmr/cloud-resume-test-api is not authorized to perform: dynamodb:GetItem on resource: arn:aws:dynamodb:eu-west-1:433607260416:table/cloud-resume-test because no identity-based policy allows the dynamodb:GetItem action"}
+
+Error: My Lambda function does not have permission to read/write my DynamoDB table.
+
+Cause: Lambda execution role didn’t have permission to call dynamodb:GetItem or PutItem.
+
+Fix: Attached AmazonDynamoDBFullAccess to the Lambda execution role, which resolved the error and allowed the function to fetch and update the views count successfully.
