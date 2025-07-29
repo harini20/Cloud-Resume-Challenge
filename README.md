@@ -59,3 +59,36 @@ Error: My Lambda function does not have permission to read/write my DynamoDB tab
 Cause: Lambda execution role didn’t have permission to call dynamodb:GetItem or PutItem.
 
 Fix: Attached AmazonDynamoDBFullAccess to the Lambda execution role, which resolved the error and allowed the function to fetch and update the views count successfully.
+
+4. ❌ “CORS Error – Lambda Function URL Fails to Return Viewer Count”
+Issue:
+While integrating the Lambda Function URL with my frontend for the viewer counter, I encountered a persistent CORS error. The frontend JavaScript fetch call fails, and the viewer count doesn’t display.
+
+Instead of receiving the expected JSON response from Lambda, the browser blocks the request with a CORS policy error.
+
+Error in browser:
+
+Access to fetch at 'https://6xlttcehhwiug5pseu6vfcbayqvlvvs.lambda-url.eu-west-1.on.aws/' 
+
+from origin 'null' has been blocked by CORS policy: 
+
+The 'Access-Control-Allow-Origin' header contains multiple values '*', '*'. 
+
+Only one is allowed.
+
+❓ Fix Attempted:
+
+Went to Lambda > Configuration > Function URL > Edit CORS
+
+Set:
+
+Allowed origins: *
+
+Allowed methods: GET
+
+Allowed headers: *
+
+Credentials: set to false
+
+Also validated that frontend fetch() is using the correct URL and parses data.views
+
